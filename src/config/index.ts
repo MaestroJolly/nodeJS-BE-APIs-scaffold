@@ -20,6 +20,6 @@ type Config = {
 
 export const app_config: Config = {
   jwt_secret_key: process.env.JWT_SECRET_KEY,
-  jwt_expiry_time: process.env.JWT_EXPIRY_TIME || 60,
-  bcrypt_salt_rounds: process.env.BCRYPT_SALT_ROUNDS || 10,
+  jwt_expiry_time: Number(process.env.JWT_EXPIRY_TIME) || 60,
+  bcrypt_salt_rounds: Number(process.env.BCRYPT_SALT_ROUNDS) || 10,
 };
