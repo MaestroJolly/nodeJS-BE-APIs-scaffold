@@ -13,9 +13,10 @@ import {
   DataType,
 } from "sequelize-typescript";
 import { User } from "./user.model";
+import { LoginHashDTO } from "../../interfaces/loginhash.dto";
 
 @Table
-export class LoginHash extends Model<LoginHash> {
+export class LoginHash extends Model<LoginHashDTO> {
   @AutoIncrement
   @PrimaryKey
   @Column

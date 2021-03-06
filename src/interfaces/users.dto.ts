@@ -27,3 +27,14 @@ export interface AllUsersDTO {
   page?: number;
   status?: string;
 }
+
+
+// user model interface
+export interface UserDTO {
+  id?: number;
+  fullname: string;
+  email: string;
+  mode?: 'live' | 'test';
+  is_admin?: boolean;
+  status?: 'active' | 'inactive' | 'partially-active';
+}

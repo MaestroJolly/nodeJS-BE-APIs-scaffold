@@ -20,9 +20,10 @@ import {
   BelongsTo,
 } from "sequelize-typescript";
 import { User } from "./user.model";
+import { UserAuthRecoveryDTO } from "../../interfaces/auth.dto";
 
 @Table
-export class UserAuthRecovery extends Model<UserAuthRecovery> {
+export class UserAuthRecovery extends Model<UserAuthRecoveryDTO> {
   @AutoIncrement
   @PrimaryKey
   @Column

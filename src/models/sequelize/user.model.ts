@@ -22,8 +22,9 @@ import { UserBusiness } from "./userbusiness.model";
 import { LoginHash } from "./loginhash.model";
 import { UserAuth } from "./userauth.model";
 import { UserAuthRecovery } from "./userauthrecovery.model";
+import { UserDTO } from "../../interfaces/users.dto";
 @Table
-export class User extends Model<User> {
+export class User extends Model<UserDTO> {
   @AutoIncrement
   @PrimaryKey
   @Column

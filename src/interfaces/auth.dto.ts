@@ -23,3 +23,18 @@ export interface ChangePasswordDTO {
     new_password:  string;
     token: string;
 }
+
+// user auth model interface
+export interface UserAuthDTO {
+    user_id: number;
+    auth_data: string;
+}
+
+// user auth recovery model interface
+export interface UserAuthRecoveryDTO {
+    email: string;
+    forgot_password_ip: string;
+    token: string;
+    user_id: number;
+    is_used?: boolean;
+}
