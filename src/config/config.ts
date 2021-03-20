@@ -13,7 +13,7 @@ export const config: Config = {
     database: process.env.DEV_DB_NAME,
     host: process.env.DEV_DB_HOSTNAME,
     port: process.env.DEV_DB_PORT,
-    dialect: "postgres",
+    dialect: process.env.DB_DIALECT,
     repositoryMode: true,
     // 'operatorsAliases': false
   },
@@ -23,7 +23,7 @@ export const config: Config = {
     database: process.env.STAGING_DB_NAME,
     host: process.env.STAGING_DB_HOSTNAME,
     port: process.env.STAGING_DB_PORT,
-    dialect: "postgres",
+    dialect: process.env.DB_DIALECT,
     repositoryMode: true,
     // 'operatorsAliases': false
   },
@@ -33,7 +33,7 @@ export const config: Config = {
     database: process.env.TEST_DB_NAME,
     host: process.env.TEST_DB_HOSTNAME,
     port: process.env.TEST_DB_PORT,
-    dialect: "postgres",
+    dialect: process.env.DB_DIALECT,
     repositoryMode: true,
     // 'operatorsAliases': false
   },
@@ -43,7 +43,7 @@ export const config: Config = {
     database: process.env.PROD_DB_NAME,
     host: process.env.PROD_DB_HOSTNAME,
     port: process.env.PROD_DB_PORT,
-    dialect: "postgres",
+    dialect: process.env.DB_DIALECT,
     repositoryMode: true,
     // 'operatorsAliases': false
   },

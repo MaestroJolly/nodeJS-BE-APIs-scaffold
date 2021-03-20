@@ -14,13 +14,23 @@ import {
 } from "../models/repository";
 import { encrypt, compare } from "../utils/hasher";
 import { v4 as uuidv4 } from "uuid";
+import * as Joi from "joi";
 
 export class AuthService {
   constructor() {}
 
   // Login auth service function
   async login(data: AuthLoginDTO): Promise<any> {
-    const user = await this.get_user(data.email, data.password);
+
+    const schema = Joi.object({
+      email: Joi.string().required().email({ minDomainSegments: 2 }).trim(),
+      req_ip: Joi.string().trim().ip(),
+      password: Joi.string().required().trim()
+    });
+
+    const validated_value = await schema.validateAsync(data);
+
+    const user = await this.get_user(validated_value.email, validated_value.password);
     const login_hash = await loginHashesRepository.findOne({
       where: {
         user_id: user.id,
@@ -30,7 +40,7 @@ export class AuthService {
 
     if (!login_hash) throw new Error("login hash was not found.");
 
-    login_hash.ip = data.req_ip;
+    login_hash.ip = validated_value.req_ip;
     login_hash.hash = `vh_${user.id}_${Date.now()}`;
 
     await login_hash.save();

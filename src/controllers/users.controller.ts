@@ -18,11 +18,11 @@ export class UsersController {
     return res.send(response);
   }
 
-  // User sign up controller function
-  async signup(req: Request, res: Response) {
+  // User register controller function
+  async register(req: Request, res: Response) {
     try {
-      const signup = await usersService.signup(req.body);
-      return success_response(res, "User Successfully registers", signup);
+      const register = await usersService.register(req.body);
+      return success_response(res, "User Successfully registers", register);
     } catch (error) {
       logger.error(error);
       return bad_request_response(res, error.message, null);

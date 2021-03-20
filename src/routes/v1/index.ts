@@ -5,10 +5,10 @@ import { Router } from "express";
 const router = Router();
 
 //auth routes
-router.use("/api", auth_route);
+router.use(auth_route);
 
 // users route
-router.use("/api", users_route);
+router.use(users_route);
 
 
 export default router;

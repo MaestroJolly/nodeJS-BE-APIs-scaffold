@@ -9,8 +9,8 @@ const usersController = new UsersController();
 // user routes
 router.post("/test", usersController.test);
 router.post(
-  "/signup",
-  usersController.signup
+  "/register",
+  usersController.register
 );
 // user details routes
 router.get("/user", auth_verifier, usersController.get_user_details);
