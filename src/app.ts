@@ -1,5 +1,4 @@
 // node packages
-import bodyParser from "body-parser";
 import cors from "cors";
 import express, { NextFunction, Request, Response } from "express";
 import morgan from "morgan";
@@ -23,9 +22,9 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(morgan("dev"));
-app.use(bodyParser.json({ limit: "10mb" }));
+app.use(express.json({ limit: "10mb" }));
 app.use(
-  bodyParser.urlencoded({
+  express.urlencoded({
     limit: "10mb",
     extended: true,
     parameterLimit: 50000,

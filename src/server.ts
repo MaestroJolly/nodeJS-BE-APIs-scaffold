@@ -10,39 +10,28 @@ import { env, port, syncStatus } from "./config";
 import logger from "./utils/logger";
 
 // sequelize db connection
-sequelize
-  .authenticate()
-  .then(async () => {
+(async () => {
+  try {
+    //Primary DB connection (Postgres/MySQL)
+    await sequelize.authenticate();
+    await sequelize.sync({ force: !syncStatus });
     logger.info("Primary DB Connection Successfully Established.");
-    try {
-      await sequelize.sync({ force: !syncStatus });
-    } catch (error) {
-      logger.error(error);
-    }
+    //Secondary DB connection (MongoDB)
+    const mongoConnectionSettings = {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+      useCreateIndex: true,
+    };
 
-    // mongo db connection
-    try {
-      const mongoConnectionSettings = {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false,
-        useCreateIndex: true,
-      };
-      await mongoose.connect(
-        mongoConfig[env].mongo_uri,
-        mongoConnectionSettings
-      );
-      logger.info("Secondary DB Connection Successfully Established");
-    } catch (error) {
-      logger.error(error);
-      throw new Error(error.message);
-    }
-
-    // application startup
-    app.listen(port, async () => {
-      logger.info(`app is running on ${port}`);
-    });
-  })
-  .catch((err: any) => {
-    logger.error(err);
+    await mongoose.connect(mongoConfig[env].mongo_uri, mongoConnectionSettings);
+    logger.info("Secondary DB Connection Successfully Established");
+  } catch (error) {
+    logger.error(error);
+    process.exit(1);
+  }
+  // application startup
+  app.listen(port, async () => {
+    logger.info(`app is running on ${port}`);
   });
+})();
