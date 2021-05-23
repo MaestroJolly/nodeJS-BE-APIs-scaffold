@@ -14,9 +14,8 @@ export const userRepository = sequelize.getRepository(User);
 export const userAuthsRepository = sequelize.getRepository(UserAuth);
 export const loginHashesRepository = sequelize.getRepository(LoginHash);
 export const userBusinessRepository = sequelize.getRepository(UserBusiness);
-export const userAuthRecoveryRepository = sequelize.getRepository(
-  UserAuthRecovery
-);
+export const userAuthRecoveryRepository =
+  sequelize.getRepository(UserAuthRecovery);
 
 // mongo repository here
 // export const createSampleRepository = async (

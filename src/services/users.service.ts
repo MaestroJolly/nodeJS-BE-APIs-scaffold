@@ -26,19 +26,23 @@ export class UsersService {
 
   // function to register a user.
   async register(data: UsersSignUpDTO): Promise<any> {
-
     const schema = Joi.object({
       fullname: Joi.string().required(),
       email: Joi.string().required().email({ minDomainSegments: 2 }).trim(),
       password: Joi.string().required().trim(),
       business_name: Joi.string().required().trim(),
-      business_mobile: Joi.string().required().trim().min(10).max(14).pattern(/^[0-9+]+$/),
+      business_mobile: Joi.string()
+        .required()
+        .trim()
+        .min(10)
+        .max(14)
+        .pattern(/^[0-9+]+$/),
       website: Joi.string().trim(),
       industry: Joi.string().trim(),
       business_email: Joi.string().email({ minDomainSegments: 2 }).trim(),
       country: Joi.string().required().trim().uppercase().length(2),
       description: Joi.string().trim(),
-      req_ip: Joi.string().trim().ip()
+      req_ip: Joi.string().trim().ip(),
     });
 
     const validated_value = await schema.validateAsync(data);
@@ -247,7 +251,7 @@ export class UsersService {
     return normalized_data;
   }
 
-    // get all users
+  // get all users
   async get_users(data: AllUsersDTO): Promise<any> {
     // delete this prop to prevent it from being queried
     if (data.is_admin) {

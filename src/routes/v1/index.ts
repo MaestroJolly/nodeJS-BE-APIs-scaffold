@@ -10,5 +10,4 @@ router.use(auth_route);
 // users route
 router.use(users_route);
 
-
 export default router;

@@ -44,21 +44,17 @@ export class UsersController {
     }
   }
 
-    // Get all user details for admin
-    async get_users(req: Request, res: Response) {
-      if(req.query){
-        req.body = { ...req.body, ...req.query };
-      }
-      try {
-        const user_details = await usersService.get_users(req.body);
-        return success_response(
-          res,
-          "Users successfully fetched",
-          user_details
-        );
-      } catch (error) {
-        logger.error(error);
-        return bad_request_response(res, error.message, null);
-      }
+  // Get all user details for admin
+  async get_users(req: Request, res: Response) {
+    if (req.query) {
+      req.body = { ...req.body, ...req.query };
     }
+    try {
+      const user_details = await usersService.get_users(req.body);
+      return success_response(res, "Users successfully fetched", user_details);
+    } catch (error) {
+      logger.error(error);
+      return bad_request_response(res, error.message, null);
+    }
+  }
 }
