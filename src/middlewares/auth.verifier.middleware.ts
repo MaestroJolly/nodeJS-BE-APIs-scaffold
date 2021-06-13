@@ -6,7 +6,7 @@ import {
   userAuthsRepository,
   loginHashesRepository,
 } from "../models/repository";
-import { unauthorized_error_response } from "../utils/response_manager";
+import { unauthorized_error_response } from "@utils/index";
 
 // import logger
 import logger from "../utils/logger";

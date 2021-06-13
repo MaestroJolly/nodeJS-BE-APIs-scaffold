@@ -80,6 +80,7 @@ typings/
 .env
 .env.test
 .env*.local
+.bash_profile
 
 .DS_Store 
 

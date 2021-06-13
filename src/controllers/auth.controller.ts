@@ -1,12 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { AuthService } from "../services/auth.service";
-import {
-  success_response,
-  bad_request_response,
-} from "../utils/response_manager";
-
-// import logger
-import logger from "../utils/logger";
+import { logger, success_response, bad_request_response } from "@utils/index";
 
 // auth service
 const authService = new AuthService();

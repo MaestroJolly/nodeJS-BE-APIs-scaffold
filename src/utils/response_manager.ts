@@ -41,7 +41,7 @@ export const success_response = async (
 };
 
 // params validation message method
-export const validation_response = async (
+export const unprocessible_entity_response = async (
   res: Response,
   message: string,
   data: any

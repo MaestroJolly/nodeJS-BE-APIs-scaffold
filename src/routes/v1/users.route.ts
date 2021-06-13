@@ -1,14 +1,17 @@
 import { Router } from "express";
 import { UsersController } from "../../controllers/users.controller";
-import { auth_verifier } from "../../middlewares/auth.verifier.middleware";
-import { admin_verifier } from "../../middlewares/admin.verifier.middleware";
+import {
+  auth_verifier,
+  admin_verifier,
+  userPayloadValidator,
+} from "@middlewares/index";
 
 const router = Router();
 const usersController = new UsersController();
 
 // user routes
 router.post("/test", usersController.test);
-router.post("/register", usersController.register);
+router.post("/register", userPayloadValidator, usersController.register);
 // user details routes
 router.get("/user", auth_verifier, usersController.get_user_details);
 // get users for admin

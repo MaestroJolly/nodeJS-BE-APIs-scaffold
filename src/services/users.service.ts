@@ -14,7 +14,6 @@ import { encrypt, compare } from "../utils/hasher";
 import { auth_key_generator } from "../utils/auth_key_generator";
 import { object_mapper, slug_normalizer } from "../utils/general_helpers";
 import { normalize_details } from "./users.normalize";
-import * as Joi from "joi";
 
 export class UsersService {
   constructor() {}
@@ -26,27 +25,6 @@ export class UsersService {
 
   // function to register a user.
   async register(data: UsersSignUpDTO): Promise<any> {
-    const schema = Joi.object({
-      fullname: Joi.string().required(),
-      email: Joi.string().required().email({ minDomainSegments: 2 }).trim(),
-      password: Joi.string().required().trim(),
-      business_name: Joi.string().required().trim(),
-      business_mobile: Joi.string()
-        .required()
-        .trim()
-        .min(10)
-        .max(14)
-        .pattern(/^[0-9+]+$/),
-      website: Joi.string().trim(),
-      industry: Joi.string().trim(),
-      business_email: Joi.string().email({ minDomainSegments: 2 }).trim(),
-      country: Joi.string().required().trim().uppercase().length(2),
-      description: Joi.string().trim(),
-      req_ip: Joi.string().trim().ip(),
-    });
-
-    const validated_value = await schema.validateAsync(data);
-
     // destructure user data
     const {
       fullname,
@@ -60,7 +38,7 @@ export class UsersService {
       country,
       description,
       req_ip,
-    } = validated_value;
+    } = data;
 
     /*
      * if website is entered, check if it already exists,

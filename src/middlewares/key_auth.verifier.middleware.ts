@@ -1,11 +1,8 @@
 import { app_config } from "../config";
 import * as jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
-import {
-  userRepository,
-  userBusinessRepository,
-} from "../models/repository";
-import { unauthorized_error_response } from "../utils/response_manager";
+import { userRepository, userBusinessRepository } from "../models/repository";
+import { unauthorized_error_response } from "@utils/index";
 
 // import logger
 import logger from "../utils/logger";
@@ -15,9 +12,8 @@ export const key_auth_verifier = async (
   res: Response,
   next: NextFunction
 ): Promise<any> => {
-    
   let auth_key: any = req.headers.authorization?.trim();
-  if(auth_key && auth_key?.includes("Bearer ")){
+  if (auth_key && auth_key?.includes("Bearer ")) {
     auth_key = auth_key.split(" ");
     auth_key = auth_key[1];
   }
@@ -30,9 +26,9 @@ export const key_auth_verifier = async (
     const userbusiness: any = await userBusinessRepository.findOne({
       raw: true,
       where: {
-        auth_key: auth_key
+        auth_key: auth_key,
       },
-      attributes: ["user_id"]
+      attributes: ["user_id"],
     });
 
     if (!userbusiness) {

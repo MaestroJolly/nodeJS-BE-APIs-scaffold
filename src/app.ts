@@ -8,7 +8,7 @@ import * as requestIp from "request-ip";
 import v1_routes from "./routes/v1";
 
 // configs
-import { env, SETTIMEOUT } from "./config";
+import { env, SETTIMEOUT } from "@config/index";
 
 export const app = express();
 

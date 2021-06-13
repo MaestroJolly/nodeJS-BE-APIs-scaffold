@@ -5,21 +5,21 @@ import {
   generalLimitTimeInMinutes,
   generalNumberOfRequestLimit,
   redisDevUrl,
-  redisProdUrl
-} from "../config";
+  redisProdUrl,
+} from "@config/index";
 
 // let RedStore = new RedisStore();
 
 // if development env
 
 let RedStore = new RedisStore({
-    redisURL: redisDevUrl
+  redisURL: redisDevUrl,
 });
 // production env
-if(env === 'production'){
-    RedStore = new RedisStore({
-        redisURL: redisProdUrl
-    });
+if (env === "production") {
+  RedStore = new RedisStore({
+    redisURL: redisProdUrl,
+  });
 }
 
 // general limit middleware checker to limit a user to these number of requests
@@ -32,5 +32,5 @@ export const general_rate_limit_checker = rateLimit({
     message: "Too many requests, please try again later.",
     data: null,
   },
-  headers: true
+  headers: true,
 });
