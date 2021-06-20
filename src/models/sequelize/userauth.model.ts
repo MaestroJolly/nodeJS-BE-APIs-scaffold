@@ -14,10 +14,10 @@ import {
   BelongsTo,
 } from "sequelize-typescript";
 import { User } from "./user.model";
-import { UserAuthDTO } from "../../interfaces/auth.dto";
+import { AuthDTO } from "@interfaces/index";
 
 @Table
-export class UserAuth extends Model<UserAuthDTO> {
+export class UserAuth extends Model<AuthDTO> {
   @AutoIncrement
   @PrimaryKey
   @Column

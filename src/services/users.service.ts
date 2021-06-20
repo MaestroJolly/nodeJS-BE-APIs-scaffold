@@ -1,19 +1,19 @@
-import {
-  UsersSignUpDTO,
-  UserAuthDTO,
-  AllUsersDTO,
-} from "../interfaces/users.dto";
-import { app_config } from "../config";
+import { UsersSignUpDTO, UserAuthDTO, AllUsersDTO } from "@interfaces/index";
+import { app_config } from "@config/index";
 import {
   userRepository,
   userAuthsRepository,
   userBusinessRepository,
   loginHashesRepository,
-} from "../models/repository";
-import { encrypt, compare } from "../utils/hasher";
-import { auth_key_generator } from "../utils/auth_key_generator";
-import { object_mapper, slug_normalizer } from "../utils/general_helpers";
-import { normalize_details } from "./users.normalize";
+} from "@models/repository";
+import {
+  encrypt,
+  compare,
+  auth_key_generator,
+  object_mapper,
+  slug_normalizer,
+} from "@utils/index";
+import { user_normalize_details } from "@services/index";
 
 export class UsersService {
   constructor() {}
@@ -223,7 +223,7 @@ export class UsersService {
     // normalized user data
     const normalized_data = object_mapper(
       user_unnormalized_data,
-      normalize_details("user_details")
+      user_normalize_details("user_details")
     );
 
     return normalized_data;

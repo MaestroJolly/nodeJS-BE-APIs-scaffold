@@ -10,7 +10,7 @@ export const userPayloadValidator = async (
   req: Request,
   res: Response,
   next: NextFunction
-): Promise<object> => {
+): Promise<any> => {
   const signupSpec = Joi.object({
     fullname: Joi.string().required(),
     email: Joi.string().required().email({ minDomainSegments: 2 }).trim(),
@@ -31,7 +31,7 @@ export const userPayloadValidator = async (
   });
 
   try {
-    const validatedData = await validateAsyncSpec(signupSpec, data, {
+    const validatedData = await validateAsyncSpec(signupSpec, req.body, {
       abortEarly: false,
     });
     req.body = validatedData;

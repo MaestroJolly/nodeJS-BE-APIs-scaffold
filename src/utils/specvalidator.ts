@@ -1,6 +1,10 @@
-import { SpecDTO } from "../interfaces/specvalidator.dto";
+import { SpecDTO } from "@interfaces/index";
 
-export const validateSpec = (spec: SpecDTO, data: {}, optionalConfig = {}) => {
+export const validateSpec = (
+  spec: SpecDTO,
+  data: object,
+  optionalConfig = {}
+) => {
   const { error, value } = spec.validate(data, {
     allowUnknown: true,
     stripUnknown: true,

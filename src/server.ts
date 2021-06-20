@@ -4,7 +4,7 @@ import { app } from "./app";
 import mongoose from "mongoose";
 
 // config settings
-import { env, port, syncStatus } from "./config";
+import { env, port, syncStatus } from "@config/index";
 
 // import logger service
 import logger from "./utils/logger";

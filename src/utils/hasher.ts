@@ -1,5 +1,5 @@
 import * as bcrypt from "bcrypt";
-import { app_config } from "../config";
+import { app_config } from "@config/index";
 const salt = app_config.bcrypt_salt_rounds;
 
 // encryption function with bcrypt lib

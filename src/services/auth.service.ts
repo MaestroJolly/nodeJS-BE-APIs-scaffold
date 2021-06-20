@@ -4,15 +4,15 @@ import {
   AuthLogoutDTO,
   ForgotPasswordDTO,
   ChangePasswordDTO,
-} from "../interfaces/auth.dto";
-import { app_config } from "../config";
+} from "@interfaces/index";
+import { app_config } from "@config/index";
 import {
   userRepository,
   userAuthsRepository,
   loginHashesRepository,
   userAuthRecoveryRepository,
-} from "../models/repository";
-import { encrypt, compare } from "../utils/hasher";
+} from "@models/repository";
+import { encrypt, compare } from "@utils/index";
 import { v4 as uuidv4 } from "uuid";
 import * as Joi from "joi";
 
@@ -21,16 +21,18 @@ export class AuthService {
 
   // Login auth service function
   async login(data: AuthLoginDTO): Promise<any> {
-
     const schema = Joi.object({
       email: Joi.string().required().email({ minDomainSegments: 2 }).trim(),
       req_ip: Joi.string().trim().ip(),
-      password: Joi.string().required().trim()
+      password: Joi.string().required().trim(),
     });
 
     const validated_value = await schema.validateAsync(data);
 
-    const user = await this.get_user(validated_value.email, validated_value.password);
+    const user = await this.get_user(
+      validated_value.email,
+      validated_value.password
+    );
     const login_hash = await loginHashesRepository.findOne({
       where: {
         user_id: user.id,
@@ -137,7 +139,7 @@ export class AuthService {
 
     if (!get_user_email) throw new Error("No record of this user was found.");
 
-    const password_recovery_data =  {
+    const password_recovery_data = {
       email: data.email,
       forgot_password_ip: data.req_ip,
       token: uuidv4().replace(/-/g, ""),
@@ -145,9 +147,8 @@ export class AuthService {
     };
 
     try {
-      const create_user_recovery_password = await userAuthRecoveryRepository.create(
-        password_recovery_data
-      );
+      const create_user_recovery_password =
+        await userAuthRecoveryRepository.create(password_recovery_data);
     } catch (error) {
       throw new Error(error.message);
     }

@@ -1,5 +1,5 @@
 import * as winston from "winston";
-import { env } from "../config";
+import { env } from "@config/index";
 
 const log_level = env === "development" ? "debug" : "warn";
 

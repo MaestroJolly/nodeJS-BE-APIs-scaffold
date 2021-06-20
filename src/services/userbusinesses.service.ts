@@ -1,7 +1,7 @@
-import { AllUserBusinessesDTO } from "../interfaces/userbusinesses.dto";
-import { app_config } from "../config";
-import { userRepository, userBusinessRepository } from "../models/repository";
-import { normalize_details } from "./userbusinesses.normalize";
+import { AllUserBusinessesDTO } from "@interfaces/index";
+import { app_config } from "@config/index";
+import { userRepository, userBusinessRepository } from "@models/repository";
+import { normalize_details } from "@services/index";
 
 export class UserBusinessesService {
   constructor() {}

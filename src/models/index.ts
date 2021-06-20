@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize-typescript";
-import { config } from "../config/config";
-import { env } from "../config";
+import { config } from "@config/config";
+import { env } from "@config/index";
 import path from "path";
 
 const dbConfig = config[env];

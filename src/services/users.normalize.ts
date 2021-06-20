@@ -1,5 +1,5 @@
 // user details normalizer
-export const normalize_details = (type: any): any => {
+export const user_normalize_details = (type: any): any => {
   switch (type) {
     case "user_details":
       return {

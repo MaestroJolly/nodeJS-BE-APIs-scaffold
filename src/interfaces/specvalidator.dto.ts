@@ -1,6 +1,6 @@
 // specvalidator interface
 
 export interface SpecDTO {
-  validate?: () => any;
-  validateAsync?: () => any;
+  validate: (data: object, optionalConfig: object) => any;
+  validateAsync: (data: object, optionalConfig: object) => any;
 }
