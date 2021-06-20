@@ -22,7 +22,7 @@ test("POST /register Negative Tests", async () => {
     .post("/v1/register")
     .set("Accept", "application/json")
     .expect("Content-Type", /json/)
-    .expect(400)
+    .expect(401)
     .then((response) => {
       expect(response.body).toBeTruthy();
       expect(response.body).toHaveProperty("status", "error");

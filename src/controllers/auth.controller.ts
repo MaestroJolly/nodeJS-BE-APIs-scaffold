@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { AuthService } from "../services/auth.service";
+import { AuthService } from "@services/index";
 import { logger, success_response, bad_request_response } from "@utils/index";
 
 // auth service

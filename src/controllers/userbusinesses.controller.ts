@@ -1,12 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { UserBusinessesService } from "../services/userbusinesses.service";
-import {
-  success_response,
-  bad_request_response,
-} from "../utils/response_manager";
-
-// import logger
-import logger from "../utils/logger";
+import { UserBusinessesService } from "@services/index";
+import { success_response, bad_request_response, logger } from "@utils/index";
 
 const userBusinessesService = new UserBusinessesService();
 
